@@ -1,11 +1,11 @@
 <h1>Books</h1>
 <span>Title</span>
 <span>Body</span>
-<% if @books %>
+
   <% @books.each do |book| %>
 
     <span>
-      <%= book.title %></span>
+      <%= book.title %>
 
       <%= book.body %>
 
@@ -14,14 +14,23 @@
       <%= link_to "Destroy", book_path(book.id), remote: true, method: :delete, "data-confirm" => "Are you sure?" %>
 
     </span>
-  <% end %>
-<% else %>
-  <p>No books found.</p>
+
+
 <% end %>
 
 
 
 <h2>New Book</h2>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this book from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 
 <%= form_with model: @book, url: '/books', method: :post do |f|%>
 <h4>Title</h4>
