@@ -4,11 +4,16 @@
 <% if @books %>
   <% @books.each do |book| %>
 
-    <span><%= book.title %></span>
+    <span>
+      <%= book.title %></span>
 
-    <span><%= book.body %></span>
+      <%= book.body %>
 
-    <span><%= link_to "show", book_path(book.id) %></span>
+      <%= link_to "Show", book_path(book.id) %>
+      <%= link_to "Edit", edit_book_path(book.id) %>
+
+
+    </span>
   <% end %>
 <% else %>
   <p>No books found.</p>
